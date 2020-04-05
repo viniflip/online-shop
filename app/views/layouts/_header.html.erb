@@ -9,6 +9,12 @@
       <%= link_to "Products", products_path,  method: :get, class: "nav-link" %>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <% values = @cart.cart_details %>
+      <%= link_to "", carts_path, method: :get, :class => "fa fa-shopping-cart link-icon" %>&nbsp;
+      <%= "#{values[:items]} item(s) #{number_to_currency(values[:amount], :unit => "€")}" %>
+    </form>
+
   </div>
 </nav>
 
