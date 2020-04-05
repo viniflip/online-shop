@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     end
   end
   resources :carts, only: :index
-  resources :shipping_addresses, only: %i[new create]
-  resources :payment_details, only: %i[new create]
+  resources :shipping_addresses, only: %i[new create edit update]
+  resources :payment_details, only: %i[new create edit update]
   resources :confirm_payments, only: :index do
     collection do
       post :confirm
