@@ -1,0 +1,2 @@
+module ConfirmPaymentsHelper
+end

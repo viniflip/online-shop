@@ -8,4 +8,12 @@ class Order < ApplicationRecord
     waiting_for_payment: 'waiting_for_payment',
     paid: 'paid'
   }
+
+  def amount
+    total = 0
+    cart_items.each do |item|
+      total += item.price.to_f * item.quantity
+    end
+    total
+  end
 end

@@ -7,7 +7,7 @@
 
     <% if @cart.present? && @cart.items.any? %>
       <div class="col-lg-6 text-right">
-
+        <%= link_to "Continue to checkout ", orders_path, method: :post, class: 'btn btn-primary btn-xs' %>
       </div>
     <% end %>
   </div>

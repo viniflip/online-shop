@@ -1,0 +1,37 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-5">
+      <h3>Payment Confirmation</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Shipping Details</h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @order.shipping_address.user_information  %></h6>
+          <p class="card-text"><%= @order.shipping_address.address_information %></p>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Payment Details</h5>
+          <p class="card-text"><%= @order.payment_detail.payment_information %></p>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <%= link_to "Confirm Payment", confirm_confirm_payments_path, method: :post, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+
+</div>

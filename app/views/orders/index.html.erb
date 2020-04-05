@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2">
+      <h1>Orders</h1>
+    </div>
+  </div>
+
+  <% if @orders.present? %>
+    <div class="row">
+      <div class="col-lg-12">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Items</th>
+            <th scope="col">Shipping Information</th>
+            <th scope="col">Payment Information</th>
+            <th scope="col">Status</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Created at</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td>
+                <% order.cart_items.each do |item| %>
+                  <ul class="list-group">
+                    <li class="list-group-item"><%= "#{item.check_product.title}(#{item.quantity})"%></li>
+                  </ul>
+                <% end %>
+              <td><%= order.payment_detail.payment_information %></td>
+              <td><%= order.shipping_address.address_information %></td>
+              <td><%= order.status.upcase %></td>
+              <td><%= number_to_currency(order.amount, :unit => "€") %></td>
+              <td><%= order.created_at.strftime('%d/%m/%Y') %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5>No orders found <span class="badge badge-secondary">0</span></h5>
+        <%= link_to "browse our products", products_path, class: 'btn btn-primary btn-xs' %>
+      </div>
+    </div>
+  <% end %>
+</div>
