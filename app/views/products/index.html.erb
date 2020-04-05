@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2">
+      <h1>Products</h1>
+    </div>
+    <div class="col-lg-10 text-right">
+      <%= link_to "New Product", new_product_path, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+
+  <div class="ibox-content">
+    <% if @products.any? %>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.title %></td>
+            <td><%= product.description %></td>
+            <td><%= number_to_currency(product.price, :unit => "€") %></td>
+            <td>
+              <%= link_to "", edit_product_path(product.id), method: :get, :class => "fa fa-edit link-icon" %>
+              <%= link_to "", product_path(product.id),  method: :delete, :class => "fa fa-trash link-icon link-icon", data: { confirm: 'Are you sure?', disable_with: 'loading...' } %>
+              <%= link_to "", product_path(product.id), method: :get, :class => "fa fa-info-circle link-icon" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h5>Your shopping list is currently empty <span class="badge badge-secondary">0</span></h5>
+    <% end %>
+  </div>
+</div>
