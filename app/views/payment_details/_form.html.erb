@@ -6,6 +6,7 @@
   </div>
   <%= simple_form_for @payment_detail do |f| %>
     <%= render '/shared/error_messages', model: @payment_detail %>
+    <%= f.hidden_field :order_id, value: @order.id %>
     <div class="row">
       <div class="col-lg-2">
         <%= f.label :account_number %>

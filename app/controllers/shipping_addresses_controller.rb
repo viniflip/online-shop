@@ -25,7 +25,6 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
-    @shipping_address.order = @order
     if @shipping_address.save
       redirect_to new_payment_detail_path
     else
@@ -39,6 +38,6 @@ class ShippingAddressesController < ApplicationController
   end
 
   def shipping_address_params
-    params.require(:shipping_address).permit(:name, :email, :street, :zip_code, :country)
+    params.require(:shipping_address).permit(:name, :order_id, :email, :street, :zip_code, :country)
   end
 end

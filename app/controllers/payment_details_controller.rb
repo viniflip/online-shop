@@ -26,7 +26,6 @@ class PaymentDetailsController < ApplicationController
 
   def create
     @payment_detail = PaymentDetail.new(payment_detail_params)
-    @payment_detail.order = @order
     if @payment_detail.save
       redirect_to confirm_payments_path
     else
@@ -40,6 +39,6 @@ class PaymentDetailsController < ApplicationController
   end
 
   def payment_detail_params
-    params.require(:payment_detail).permit(:account_number, :issuing_bank)
+    params.require(:payment_detail).permit(:order_id, :account_number, :issuing_bank)
   end
 end
